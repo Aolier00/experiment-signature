@@ -10,7 +10,7 @@ const DraggableCanvas: React.FC = () => {
   return (
     <div>
       <Draggable canvasData={canvaData} draggableData={draggableData} setDraggableData={setDraggableData}></Draggable>
-      <div className='flex'>
+      <div className='flex gap-2'>
         {
           canvaData.map((item, i) => (
             <Canva canvaData={canvaData} index={i} setCanvaData={setCanvaData} key={i}></Canva>
