@@ -1,10 +1,12 @@
+
 export interface CanvaInterface {
     clientRect?: Element | null;
+    children:string
 }
 
 export interface DraggableInterface {
     clientRect?: Element | null;
-    name?: string
+    name?: string,
 }
 
 
@@ -19,11 +21,3 @@ export const dataDraggable: DraggableInterface[] = [
     }
 ]
 
-export const dataCanva: CanvaInterface[] = [
-    {
-        clientRect: null
-    },
-    {
-        clientRect: null
-    }
-]

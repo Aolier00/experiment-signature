@@ -34,7 +34,7 @@ type PropsDragg = {
     index: number,
     arrCanva: Array<CanvaInterface>,
     arrDraggable: Array<DraggableInterface>,
-    draggableItem:DraggableInterface
+    draggableItem: DraggableInterface
 }
 const Dragg = ({ text, onHandle, index, arrCanva, arrDraggable }: PropsDragg) => {
     const draggableRef = useRef<HTMLDivElement | null>(null);
@@ -51,7 +51,6 @@ const Dragg = ({ text, onHandle, index, arrCanva, arrDraggable }: PropsDragg) =>
                         const { target } = event;
                         const x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx;
                         const y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
-
                         target.style.transform = `translate(${x}px, ${y}px)`;
                         target.setAttribute('data-x', x.toString());
                         target.setAttribute('data-y', y.toString());

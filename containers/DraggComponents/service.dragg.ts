@@ -22,5 +22,3 @@ export const positionCanva = (draggable: Element | null, arrCanva: Array<CanvaIn
     });
     return data.findIndex((item) => item);
 };
-
-//console.log(positionCanva([{myref_draggable:draggableRef}],[{myref_cava:canvasRef1}, {myref_cava:canvasRef2}]))
