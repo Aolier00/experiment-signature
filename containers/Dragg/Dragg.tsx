@@ -64,7 +64,7 @@ const DraggableCanvas: React.FC = () => {
       setCanvaData(data);
     }
   }, [images.length, images])
-  
+
   return (
     <div>
       <div>
@@ -80,9 +80,11 @@ const DraggableCanvas: React.FC = () => {
         {canvaData.length ?
           <>
             <Draggable canvasData={canvaData} draggableData={draggableData} setDraggableData={setDraggableData}></Draggable>
-            {canvaData.map((item, i) => (
-              <Canva canvaData={canvaData} index={i} setCanvaData={setCanvaData} key={i} base64={item.children} />
-            ))}
+            <div className='flex flex-col space-y-2'>
+              {canvaData.map((item, i) => (
+                <Canva canvaData={canvaData} index={i} setCanvaData={setCanvaData} key={i} base64={item.children} />
+              ))}
+            </div>
           </>
           : null}
       </div>

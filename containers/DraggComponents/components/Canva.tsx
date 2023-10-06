@@ -38,7 +38,7 @@ const Canva = ({ setCanvaData, canvaData, index, base64 }: PropsCanva) => {
         <>
             <canvas
                 ref={canvasRef}
-                className="border border-gray-300 w-6/12 h-screen"
+                className="border border-gray-300 w-full h-screen"
             ></canvas>
         </>
     )
