@@ -1,19 +1,19 @@
 import React, { ReactNode, useEffect, useRef } from 'react'
-import { CanvaInterface } from '../domain/Dragg'
+import { CanvasInterface } from '../domain/Dragg'
 
 
-type PropsCanva = {
-    setCanvaData: (arg: CanvaInterface[]) => void
-    canvaData: CanvaInterface[];
+type PropsCanvas = {
+    setCanvasData: (arg: CanvasInterface[]) => void
+    canvasData: CanvasInterface[];
     index: number,
     base64: string
 }
-const Canva = ({ setCanvaData, canvaData, index, base64 }: PropsCanva) => {
+const Canvas = ({ setCanvasData, canvasData, index, base64 }: PropsCanvas) => {
     const canvasRef = useRef<HTMLCanvasElement | null>(null);
     useEffect(() => {
-        const copy = [...canvaData];
+        const copy = [...canvasData];
         copy[index].clientRect = canvasRef.current
-        setCanvaData(copy);
+        setCanvasData(copy);
     }, [canvasRef]);
 
     useEffect(() => {
@@ -35,12 +35,10 @@ const Canva = ({ setCanvaData, canvaData, index, base64 }: PropsCanva) => {
     }, [canvasRef]);
 
     return (
-        <>
-            <canvas
-                ref={canvasRef}
-                className="border border-gray-300 w-full h-screen"
-            ></canvas>
-        </>
+        <canvas
+            ref={canvasRef}
+            className="border border-gray-300 w-full h-screen"
+        ></canvas>
     )
 }
-export default Canva
+export default Canvas

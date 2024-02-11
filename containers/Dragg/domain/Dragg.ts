@@ -1,5 +1,5 @@
 
-export interface CanvaInterface {
+export interface CanvasInterface {
     clientRect?: Element | null;
     children:string
 }
@@ -13,11 +13,15 @@ export interface DraggableInterface {
 export const dataDraggable: DraggableInterface[] = [
     {
         clientRect: null,
-        name: 'dragg 1'
+        name: 'drag 1'
     },
     {
         clientRect: null,
-        name: 'dragg 2'
-    }
+        name: 'drag 2'
+    },
+    {
+        clientRect: null,
+        name: 'drag 2'
+    },
 ]
 
