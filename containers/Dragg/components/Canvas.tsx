@@ -1,44 +1,39 @@
-import React, { ReactNode, useEffect, useRef } from 'react'
-import { CanvasInterface } from '../domain/Dragg'
-
+import React, { useEffect, useRef } from "react";
+import { CanvasInterface } from "../domain/Dragg";
 
 type PropsCanvas = {
-    setCanvasData: (arg: CanvasInterface[]) => void
-    canvasData: CanvasInterface[];
-    index: number,
-    base64: string
-}
+  setCanvasData: (arg: CanvasInterface[]) => void;
+  canvasData: CanvasInterface[];
+  index: number;
+  base64: string;
+};
 const Canvas = ({ setCanvasData, canvasData, index, base64 }: PropsCanvas) => {
-    const canvasRef = useRef<HTMLCanvasElement | null>(null);
-    useEffect(() => {
-        const copy = [...canvasData];
-        copy[index].clientRect = canvasRef.current
-        setCanvasData(copy);
-    }, [canvasRef]);
+  let divRef = useRef<HTMLDivElement | null>(null);
 
-    useEffect(() => {
-        const canvas = canvasRef.current;
-        if (!canvas) return;
+  useEffect(() => {
+    if (!divRef) return;
+    const copy = [...canvasData];
+    copy[index].clientRect = divRef.current;
+    setCanvasData(copy);
+  }, [divRef]);
 
-        const ctx = canvas.getContext('2d');
-
-        const img = new Image();
-        img.src = base64;
-
-        img.onload = () => {
-            canvas.width = img.width;
-            canvas.height = img.height;
-
-            ctx && ctx.drawImage(img, 0, 0);
-            console.log(ctx)
-        };
-    }, [canvasRef]);
-
-    return (
-        <canvas
-            ref={canvasRef}
-            className="border border-gray-300 w-full h-screen"
-        ></canvas>
-    )
-}
-export default Canvas
+  return (
+    <div className="relative w-full h-full" ref={divRef}>
+      <div
+        id={index.toString()}
+        style={{
+          // height: '1000px',
+          padding: "10px",
+          marginTop: "4px",
+          backgroundImage: `url(${base64})`,
+          height: "100%",
+          backgroundSize: "contain",
+          backgroundRepeat: "no-repeat",
+        }}
+        className="w-full"
+      ></div>
+      <div className={`absolute z-10 h-full w-full top-0 canva-${index}`}></div>
+    </div>
+  );
+};
+export default Canvas;

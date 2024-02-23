@@ -1,7 +1,6 @@
 import { CanvasInterface } from '../domain/Dragg';
 
-export const isInsideRect = (draggable: DOMRect, canva: DOMRect, candaIndex: number) => {
-    console.log({ canva: candaIndex, x: canva.x, y: canva.y })
+export const isInsideRect = (draggable: DOMRect, canva: DOMRect) => {
     return (
         draggable.left >= canva.left &&
         draggable.right <= canva.right &&
@@ -17,9 +16,22 @@ export const positionCanva = (draggable: Element | null, arrCanva: Array<CanvasI
         if (draggable) {
             const draggRect = draggable.getBoundingClientRect();
             if (canvasRect && draggRect) {
-                data.push(isInsideRect(draggRect, canvasRect, i));
+                data.push(isInsideRect(draggRect, canvasRect));
             }
         }
     });
     return data.findIndex((item) => item);
 };
+
+export const getPositionInsideRect = (
+    draggable: DOMRect,
+    canva: DOMRect
+  ): { x: number; y: number } | null => {
+    if (isInsideRect(draggable, canva)) {
+      const x = draggable.left - canva.left;
+      const y = draggable.top - canva.top;
+      return { x, y };
+    } else {
+      return null; // El "draggable" no está completamente dentro del "canva"
+    }
+  };
